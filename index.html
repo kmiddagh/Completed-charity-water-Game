@@ -8,28 +8,51 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- Game Wrapper -->
-  <div class="game-wrapper">
+  <main class="main-container">
+    <!-- Game Wrapper -->
+    <div class="game-wrapper">
   <!-- Logo and Title -->
-  <img src="https://www.charitywater.org/assets/images/logos/cw-logo.svg" alt="charity: water logo" class="logo" />
-  <h1 class="game-title">Water Drop</h1>
-  <p class="game-tagline">Catch the clean drops to help bring water to everyone!</p>
+  <!-- Use local asset instead of remote SVG so the logo loads offline / when external resources are blocked -->
+  <img src="img/cw_logo.png" alt="charity: water logo" class="logo" />
+      <h1 class="game-title">Water Drop</h1>
+      <p class="game-tagline">Catch the clean drops to help bring water to everyone!!!</p>
 
-    <!-- Score Panel -->
-    <div class="score-panel">
-      <div class="score">Score: <span id="score">0</span></div>
-      <div class="timer">Time: <span id="time">30</span>s</div>
-      <button id="start-btn">Start Game</button>
-      <button id="reset-btn">Reset</button>
-    </div>
+      <!-- Score Panel -->
+      <div class="score-panel">
+        <div>
+          <div class="title">Score</div>
+          <div id="score">0</div>
+        </div>
+        <div>
+          <div class="title">Time</div>
+          <div id="time">30</div>
+        </div>
+        <button id="start-btn">Start Game</button>
+        <button id="reset-btn">Reset</button>
+        <button id="pause-btn">Pause</button>
+        <button id="audio-toggle">🔊 Sound: On</button>
+        <select id="difficulty">
+          <option value="Easy">Easy</option>
+          <option value="Normal" selected>Normal</option>
+          <option value="Hard">Hard</option>
+        </select>
+        <small id="difficulty-helper">Goal: 20 points</small>
+      </div>
 
-  <!-- Game Area and Message -->
-  <div id="game-container"></div>
-  <div id="message"></div>
-  </div>
+      <!-- Game Area and Message -->
+      <div id="game-container"></div>
+      <div id="message" aria-live="polite"></div>
+      <div id="toast" aria-live="polite" class="visually-hidden"></div>
+    </div> <!-- End of .game-wrapper -->
 
+    <footer class="cw-footer">
+      <a href="https://www.charitywater.org/" target="_blank" rel="noopener noreferrer">About charity: water</a>
+      <a href="https://www.charitywater.org/donate" target="_blank" rel="noopener noreferrer">Donate</a>
+    </footer>
+  </main>
   <!-- Game Logic Script -->
   <script src="script.js"></script>
+  <!-- Confetti library (loaded locally from CDN here but inside the document) -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 </body>
 </html>
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>

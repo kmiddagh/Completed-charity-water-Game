@@ -31,16 +31,48 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #f0f8ff;
-  font-family: 'Avenir', sans-serif;
+  background: linear-gradient(135deg, #87ceeb, #ffffff); /* Darker blue gradient */
+  font-family: "Avenir", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding: 20px;
+}
+
+.main-container {
+  /* === Main Layout === */
+  max-width: 1200px;
+  width: 100%;
+  margin: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
 }
 
 .game-wrapper {
   /* === Game Wrapper === */
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  width: 100%;
+  max-width: 800px;
+}
+
+/* Game area: positioned container for drops */
+#game-container {
+  position: relative;
+  width: 100%;
+  height: 60vh; /* visible play area */
+  max-height: 520px;
+  min-height: 320px;
+  background: linear-gradient(180deg, rgba(46,157,247,0.03), rgba(255,255,255,0.02));
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid rgba(46,157,247,0.06);
 }
 
 .logo {
@@ -48,51 +80,150 @@ body {
   width: 150px;
 }
 
+.game-title {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  color: #FFC907;
+  text-align: center;
+}
+
+.game-tagline {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  color: rgba(0, 0, 0, 0.6);
+  text-align: center;
+}
+
 .score-panel {
   /* === Score Panel === */
   display: flex;
-  justify-content: space-between;
+  flex-wrap: nowrap;
+  justify-content: center;
   align-items: center;
-  width: 800px;
-  padding: 10px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  gap: 15px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  padding: 10px 20px; /* Reduce padding for compact layout */
+  box-shadow: 0 6px 18px rgba(46, 157, 247, 0.12);
+  position: relative;
 }
 
-#game-container {
-  /* === Game Container === */
-  width: 800px;
-  height: 600px;
-  background-color: #e6f7ff;
-  border: 3px solid #2e9df7;
-  border-radius: 8px;
+.score-panel .title {
+  font-size: 12px;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.6); /* Subtle text color */
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+/* Score holder card */
+#score, #time {
+  display: inline-block;
+  min-width: 80px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #ffffff, #fff7e6); /* Match score background */
+  color: #FFC907; /* Yellow numbers */
+  font-weight: 900;
+  font-size: 28px;
+  text-align: center;
+  box-shadow: 0 6px 14px rgba(255, 201, 7, 0.12); /* Match score shadow */
+  border: 2px solid rgba(255,201,7,0.15); /* Match score border */
   position: relative;
-  overflow: hidden;
+}
+
+/* Timer styled like a digital clock with yellow digits */
+#time {
+  display: inline-block;
+  min-width: 80px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  color: #FFC907; /* digital yellow digits */
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 900;
+  font-size: 26px;
+  text-align: center;
+  box-shadow: 0 8px 18px rgba(46, 157, 247, 0.12), inset 0 -6px 12px rgba(0,0,0,0.12);
+  border: 2px solid rgba(255,201,7,0.12);
+  letter-spacing: 2px;
+  text-shadow: 0 2px 8px rgba(255,201,7,0.12);
 }
 
 button {
-  /* === Buttons === */
-  padding: 8px 16px;
-  margin-left: 5px;
+  /* Uniform button size */
+  width: 120px;
+  height: 40px;
+  padding: 0; /* Remove extra padding */
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
-  background-color: #ffc907;
-  color: #000;
+  background-color: #2e9df7; /* Blue color */
+  color: #ffffff;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 14px;
+  text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
-  background-color: #ffd944;
+  background-color: #ffffff; /* White fill */
+  color: #2e9df7; /* Blue font */
+  border: 2px solid #2e9df7; /* Blue border */
+  transform: scale(1.05);
 }
 
-.score, .timer {
-  /* === Score and Timer === */
-  font-size: 22px;
+button:focus {
+  outline: 2px solid #8bd1cb; /* Light blue outline for focus */
+  outline-offset: 2px;
+}
+
+select {
+  /* === Difficulty Selector === */
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: #ffffff;
+  border: 1px solid #2e9df7;
+  color: #2e9df7;
+  cursor: pointer;
+}
+
+select:focus {
+  outline: 2px solid #2e9df7;
+  outline-offset: 2px;
+}
+
+#difficulty-helper {
+  font-size: 14px;
+  color: #2e9df7;
+  margin-top: 5px;
+}
+
+footer.cw-footer {
+  /* === Footer === */
+  text-align: center;
+  font-size: 16px;
   font-weight: bold;
   color: #2e9df7;
+}
+
+footer.cw-footer a {
+  text-decoration: none;
+  color: #2e9df7;
+  margin: 0 10px;
+  padding: 5px 10px;
+  border: 2px solid #2e9df7; /* Add border around links */
+  border-radius: 8px;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+footer.cw-footer a:hover {
+  color: #ffffff;
+  background-color: #2e9df7; /* Blue background on hover */
+}
+
+footer.cw-footer a:focus {
+  outline: 2px solid #8bd1cb; /* Replace green focus outline with light blue */
+  outline-offset: 2px;
 }
 
 .water-drop {
@@ -102,11 +233,22 @@ button:hover {
   animation: dropFall linear forwards;
   background-color: #2e9df7;
   cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.water-drop:hover {
+  transform: scale(1.05);
 }
 
 .bad-drop {
   /* === Bad Drop === */
   background-color: #f5402c;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.bad-drop:hover {
+  transform: scale(1.05);
 }
 
 @keyframes dropFall {
@@ -124,12 +266,119 @@ button:hover {
   text-align: center;
 }
 
+.combo-indicator {
+  position: absolute;
+  font-size: 18px;
+  font-weight: bold;
+  color: #2e9df7;
+  pointer-events: none;
+  animation: fadeOut 1s forwards;
+}
+
+.combo-indicator.bad {
+  color: #f5402c;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+.score#score.streak-glow, #score.streak-glow {
+  animation: streakGlow 0.5s ease-in-out;
+}
+
+@keyframes streakGlow {
+  0%, 100% {
+    text-shadow: 0 0 10px #2e9df7; /* Replace green glow with blue */
+  }
+  50% {
+    text-shadow: 0 0 20px #2e9df7;
+  }
+}
+
+.timer-warning {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  background-color: #f5402c;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 5px 0;
+  animation: fadeOut 1s forwards;
+}
+
+.milestone-toast {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #2e9df7; /* Replace yellow with blue */
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: fadeOut 2s forwards;
+}
+
+#game-container.paused {
+  animation-play-state: paused !important;
+}
+
+.water-drop, .bad-drop {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.water-drop:hover, .bad-drop:hover {
+  transform: scale(1.05);
+}
+
+.click-fx {
+  position: absolute;
+  font-size: 18px;
+  font-weight: bold;
+  animation: fadeOut 1s forwards;
+  pointer-events: none;
+  transform: translate(-50%, -50%); /* Center the effect at the exact click location */
+  z-index: 10; /* Ensure it appears above other elements */
+}
+
+.click-fx.good {
+  color: #4fcb53; /* Green for positive values */
+}
+
+.click-fx.bad {
+  color: #f5402c; /* Red for negative values */
+}
+
 /* === Responsive Styles === */
 @media (max-width: 850px) {
-  .score-panel, #game-container {
-    width: 95vw;
+  .score-panel {
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 10px;
   }
-  #game-container {
-    height: 70vh;
+
+  #score, #time {
+    min-width: 70px;
+    font-size: 18px;
+    padding: 6px 12px;
+  }
+
+  button {
+    width: 100px; /* Adjust button width for smaller screens */
+    height: 36px;
+    font-size: 12px;
   }
 }
