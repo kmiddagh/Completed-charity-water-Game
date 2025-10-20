@@ -1,0 +1,135 @@
+/* Charity: water Brand Colors & Fonts
+
+Primary Colors:
+- Yellow:     #FFC907
+- Blue:       #2E9DF7
+
+Secondary Colors:
+- Light Blue: #8BD1CB
+- Green:      #4FCB53
+- Orange:     #FF902A
+- Red:        #F5402C
+- Dark Green: #159A48
+- Pink:       #F16061
+
+Fonts:
+- Proxima Nova
+- Avenir
+
+*/
+
+* {
+  /* === Reset Styles === */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /* === Body Layout === */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f8ff;
+  font-family: 'Avenir', sans-serif;
+}
+
+.game-wrapper {
+  /* === Game Wrapper === */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo {
+  /* === Logo === */
+  width: 150px;
+}
+
+.score-panel {
+  /* === Score Panel === */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 800px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#game-container {
+  /* === Game Container === */
+  width: 800px;
+  height: 600px;
+  background-color: #e6f7ff;
+  border: 3px solid #2e9df7;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+button {
+  /* === Buttons === */
+  padding: 8px 16px;
+  margin-left: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #ffc907;
+  color: #000;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #ffd944;
+}
+
+.score, .timer {
+  /* === Score and Timer === */
+  font-size: 22px;
+  font-weight: bold;
+  color: #2e9df7;
+}
+
+.water-drop {
+  /* === Water Drop Styles === */
+  position: absolute;
+  border-radius: 50%;
+  animation: dropFall linear forwards;
+  background-color: #2e9df7;
+  cursor: pointer;
+}
+
+.bad-drop {
+  /* === Bad Drop === */
+  background-color: #f5402c;
+}
+
+@keyframes dropFall {
+  /* === Drop Animation === */
+  from { transform: translateY(-20px); }
+  to { transform: translateY(600px); }
+}
+
+#message {
+  /* === Message Display === */
+  font-size: 28px;
+  font-weight: bold;
+  color: #131313;
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* === Responsive Styles === */
+@media (max-width: 850px) {
+  .score-panel, #game-container {
+    width: 95vw;
+  }
+  #game-container {
+    height: 70vh;
+  }
+}

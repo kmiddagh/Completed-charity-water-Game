@@ -1,0 +1,35 @@
+<!-- Main HTML structure for Water Drop Game -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Water Drop Game</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Game Wrapper -->
+  <div class="game-wrapper">
+  <!-- Logo and Title -->
+  <img src="https://www.charitywater.org/assets/images/logos/cw-logo.svg" alt="charity: water logo" class="logo" />
+  <h1 class="game-title">Water Drop</h1>
+  <p class="game-tagline">Catch the clean drops to help bring water to everyone!</p>
+
+    <!-- Score Panel -->
+    <div class="score-panel">
+      <div class="score">Score: <span id="score">0</span></div>
+      <div class="timer">Time: <span id="time">30</span>s</div>
+      <button id="start-btn">Start Game</button>
+      <button id="reset-btn">Reset</button>
+    </div>
+
+  <!-- Game Area and Message -->
+  <div id="game-container"></div>
+  <div id="message"></div>
+  </div>
+
+  <!-- Game Logic Script -->
+  <script src="script.js"></script>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
